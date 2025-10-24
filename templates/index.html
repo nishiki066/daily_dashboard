@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <title>日历日志查看器</title>
+
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button id="btn-calendar" class="nav-btn active">日历</button>
+            <button id="btn-logs" class="nav-btn">日志</button>
+        </div>
+        <div class="nav-center">
+            <h1>日历日志查看器</h1>
+        </div>
+        <div class="nav-right">
+            <div id="current-time" class="clock">加载中...</div>
+            <button id="btn-refresh" class="btn-refresh" title="刷新页面">🔄</button>
+        </div>
+    </header>
+
+    <!-- 内容显示区域 -->
+    <main class="content-area">
+        <!-- 日历视图 -->
+        <div id="calendar-view" class="view-container">
+            <div id="calendar"></div>
+        </div>
+
+        <!-- 日志视图 -->
+        <div id="logs-view" class="view-container" style="display: none;">
+            <div class="logs-header">
+                <h2>系统日志</h2>
+                <div class="logs-filter">
+                    <label for="log-date-filter">日期筛选：</label>
+                    <input type="date" id="log-date-filter">
+                    <button id="btn-filter-logs" class="btn-filter">筛选</button>
+                    <button id="btn-clear-filter" class="btn-filter">全部</button>
+                </div>
+            </div>
+            <div id="logs-container" class="logs-container">
+                <div class="log-loading">正在加载日志...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部控制栏 -->
+    <footer class="control-bar">
+        <!-- 左侧：灯控制 -->
+        <div class="control-left">
+            <div class="light-control-group">
+                <div class="light-item">
+                    <span class="light-label">💡 卧室灯</span>
+                    <button id="btn-bedroom-on" class="btn-light btn-on">开</button>
+                    <button id="btn-bedroom-off" class="btn-light btn-off">关</button>
+                </div>
+                <div class="light-item">
+                    <span class="light-label">💡 客厅灯</span>
+                    <button id="btn-living-on" class="btn-light btn-on">开</button>
+                    <button id="btn-living-off" class="btn-light btn-off">关</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：环境信息 -->
+        <div class="control-right">
+            <div class="environment-info">
+                <div class="env-item">
+                    <span class="env-icon">🌡️</span>
+                    <span class="env-label">温度：</span>
+                    <span id="env-temperature" class="env-value">--</span>
+                    <span class="env-unit">°C</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-icon">💧</span>
+                    <span class="env-label">湿度：</span>
+                    <span id="env-humidity" class="env-value">--</span>
+                    <span class="env-unit">%</span>
+                </div>
+                <div class="env-item">
+                    <span class="env-icon">☁️</span>
+                    <span class="env-label">天气：</span>
+                    <span id="env-weather" class="env-value">--</span>
+                </div>
+                <div class="env-item env-update">
+                    <span class="env-label">更新：</span>
+                    <span id="env-update-time" class="env-value-small">--:--</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FullCalendar v6 -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/locales/zh-cn.global.min.js'></script>
+
+    <script>
+        if (typeof FullCalendar !== 'undefined') {
+            console.log('✅ FullCalendar v6 加载成功');
+        } else {
+            console.error('❌ FullCalendar加载失败');
+        }
+    </script>
+
+    <!-- 自定义JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/logs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/light-control.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/environment.js') }}"></script>
+</body>
+</html>

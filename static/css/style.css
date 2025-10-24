@@ -1,0 +1,545 @@
+/* style.css - CRT绿色终端主题 */
+
+/* ==================== 全局样式 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', 'Microsoft YaHei', monospace;
+    background-color: #000000; /* 纯黑背景 */
+    width: 1024px;
+    height: 600px;
+    overflow: hidden;
+    color: #00ff00; /* 经典CRT绿 */
+}
+
+/* ==================== 顶部导航栏 ==================== */
+.navbar {
+    height: 60px;
+    background-color: #0a0a0a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 2px solid #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.nav-left {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-center h1 {
+    font-size: 24px;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.clock {
+    font-size: 18px;
+    color: #00ff00;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px #00ff00;
+    padding: 8px 15px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 0, 0.05);
+}
+
+/* 导航按钮 */
+.nav-btn {
+    padding: 10px 28px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: #000000;
+    color: #00ff00;
+    transition: all 0.2s ease;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background-color: #00ff00;
+    color: #000000;
+    text-shadow: none;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+/* 刷新按钮 */
+.btn-refresh {
+    padding: 8px;
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: transparent;
+    color: #00ff00;
+    transition: all 0.3s ease;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-refresh:hover {
+    background-color: #00ff00;
+    color: #000000;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    transform: rotate(180deg);
+}
+
+/* ==================== 内容显示区域 ==================== */
+.content-area {
+    height: 480px;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+.view-container {
+    height: 100%;
+    padding: 20px;
+}
+
+/* ==================== 日历样式 ==================== */
+#calendar {
+    height: 440px;
+    max-width: 980px;
+    margin: 0 auto;
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 15px;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+/* FullCalendar CRT风格 */
+.fc {
+    font-family: 'Courier New', monospace;
+}
+
+.fc-toolbar-title {
+    font-size: 24px !important;
+    color: #00ff00 !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 8px #00ff00 !important;
+}
+
+.fc-button {
+    background-color: #000000 !important;
+    border: 2px solid #00ff00 !important;
+    color: #00ff00 !important;
+    padding: 8px 16px !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 5px #00ff00 !important;
+}
+
+.fc-button:hover {
+    background-color: rgba(0, 255, 0, 0.2) !important;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important;
+}
+
+.fc-button:disabled {
+    opacity: 0.3 !important;
+    box-shadow: none !important;
+}
+
+/* 日历格子 */
+.fc-daygrid-day {
+    background-color: #000000 !important;
+    border-color: #003300 !important;
+}
+
+/* 今天的日期 */
+.fc-daygrid-day.fc-day-today {
+    background-color: rgba(0, 255, 0, 0.15) !important;
+    border: 2px solid #00ff00 !important;
+}
+
+.fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+    font-weight: bold;
+    color: #00ff00;
+    font-size: 18px;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+/* 日期数字 */
+.fc-daygrid-day-number {
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #00ff00;
+    text-shadow: 0 0 3px #00ff00;
+}
+
+/* 有日志的日期 */
+.fc-daygrid-day.has-logs {
+    background-color: rgba(0, 255, 0, 0.08) !important;
+}
+
+/* 星期标题行 */
+.fc-col-header-cell {
+    background-color: #001a00 !important;
+    color: #00ff00 !important;
+    font-weight: bold;
+    padding: 12px 0;
+    font-size: 15px;
+    border-color: #003300 !important;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+/* 鼠标悬停 */
+.fc-daygrid-day:hover {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+    cursor: pointer;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* ==================== 日志视图样式 ==================== */
+.logs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.logs-header h2 {
+    font-size: 22px;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+.logs-filter {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.logs-filter label {
+    font-size: 15px;
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.logs-filter input[type="date"] {
+    padding: 6px 12px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-filter {
+    padding: 6px 18px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #000000;
+    color: #00ff00;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-filter:hover {
+    background-color: #00ff00;
+    color: #000000;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+/* 日志容器 */
+.logs-container {
+    height: 380px;
+    overflow-y: auto;
+    background-color: #000000;
+    color: #00ff00;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.log-loading {
+    text-align: center;
+    padding: 20px;
+    color: #00ff00;
+    font-size: 16px;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.log-item {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    border-left: 4px solid #00ff00;
+    background-color: rgba(0, 255, 0, 0.05);
+    border-radius: 4px;
+}
+
+.log-time {
+    color: #00ff00;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.log-level {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+    border: 1px solid #00ff00;
+}
+
+.log-level.INFO {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+}
+
+.log-level.WARNING {
+    background-color: rgba(255, 255, 0, 0.2);
+    color: #ffff00;
+    border-color: #ffff00;
+}
+
+.log-level.ERROR {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.log-message {
+    color: #00ff00;
+    font-size: 14px;
+}
+
+/* 滚动条CRT风格 */
+.logs-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.logs-container::-webkit-scrollbar-track {
+    background: #000000;
+    border: 1px solid #003300;
+}
+
+.logs-container::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #00ff00;
+}
+
+.logs-container::-webkit-scrollbar-thumb:hover {
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+/* ==================== 底部控制栏 ==================== */
+.control-bar {
+    height: 60px;
+    background-color: #0a0a0a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-top: 2px solid #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* 左侧：灯控制 */
+.control-left {
+    flex: 0 0 500px;
+}
+
+.light-control-group {
+    display: flex;
+    gap: 30px;
+}
+
+.light-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.light-label {
+    font-size: 17px;
+    font-weight: bold;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-light {
+    padding: 10px 26px;
+    border: 2px solid #00ff00;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.15s ease;
+    min-width: 70px;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+}
+
+.btn-light:active {
+    transform: scale(0.95);
+}
+
+.btn-light:disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-on {
+    background-color: #00ff00;
+    color: #000000;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.btn-on:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+.btn-off {
+    background-color: #000000;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.btn-off:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+/* 右侧：环境信息 */
+.control-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.environment-info {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.env-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-family: 'Courier New', monospace;
+}
+
+.env-icon {
+    font-size: 20px;
+    filter: drop-shadow(0 0 5px #00ff00);
+}
+
+.env-label {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.env-value {
+    font-weight: bold;
+    color: #00ff00;
+    font-size: 18px;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+.env-value-small {
+    font-size: 14px;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.env-unit {
+    color: #00ff00;
+    font-size: 13px;
+}
+
+.env-update {
+    border-left: 2px solid #00ff00;
+    padding-left: 20px;
+}
+
+/* ==================== CRT扫描线效果（可选） ==================== */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ==================== 触摸屏优化 ==================== */
+@media (hover: none) {
+    .btn-light {
+        padding: 12px 30px;
+        font-size: 18px;
+        min-width: 80px;
+    }
+
+    .btn-refresh {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    .nav-btn {
+        padding: 12px 32px;
+        font-size: 19px;
+    }
+}
