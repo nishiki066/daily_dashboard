@@ -13,8 +13,8 @@ WEATHER_API = {
     'base_url': 'https://api.open-meteo.com/v1/forecast',
     'location': {
         'name': '松江市',
-        'latitude': 35.4722,
-        'longitude': 133.0506
+        'latitude': 35.484655,
+        'longitude': 133.067194
     },
     'timezone': 'Asia/Tokyo',
     'current_params': 'temperature_2m,relative_humidity_2m,weather_code',
