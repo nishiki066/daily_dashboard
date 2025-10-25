@@ -1,24 +1,50 @@
-// navigation.js - 页面导航切换
+// navigation.js - 修改后的版本
 
 function initNavigation() {
+    const btnClock = document.getElementById('btn-clock');
     const btnCalendar = document.getElementById('btn-calendar');
     const btnLogs = document.getElementById('btn-logs');
 
+    const clockView = document.getElementById('clock-view');
     const calendarView = document.getElementById('calendar-view');
     const logsView = document.getElementById('logs-view');
+
+    // 切换到时钟视图
+    btnClock.addEventListener('click', function() {
+        // 更新按钮状态
+        btnClock.classList.add('active');
+        btnCalendar.classList.remove('active');
+        btnLogs.classList.remove('active');
+
+        // 切换视图 - 只显示时钟
+        clockView.style.display = 'block';
+        calendarView.style.display = 'none';
+        logsView.style.display = 'none';
+
+        window.app.currentView = 'clock';
+        console.log('切换到时钟视图');
+    });
 
     // 切换到日历视图
     btnCalendar.addEventListener('click', function() {
         // 更新按钮状态
         btnCalendar.classList.add('active');
+        btnClock.classList.remove('active');
         btnLogs.classList.remove('active');
 
-        // 切换视图
+        // 切换视图 - 只显示日历
+        clockView.style.display = 'none';
         calendarView.style.display = 'block';
         logsView.style.display = 'none';
 
-        // 更新全局状态
         window.app.currentView = 'calendar';
+
+        // 👇 添加这段：延迟更新日历尺寸
+        setTimeout(() => {
+            if (typeof updateCalendarSize === 'function') {
+                updateCalendarSize();
+            }
+        }, 50);
 
         console.log('切换到日历视图');
     });
@@ -27,16 +53,16 @@ function initNavigation() {
     btnLogs.addEventListener('click', function() {
         // 更新按钮状态
         btnLogs.classList.add('active');
+        btnClock.classList.remove('active');
         btnCalendar.classList.remove('active');
 
-        // 切换视图
-        logsView.style.display = 'block';
+        // 切换视图 - 只显示日志
+        clockView.style.display = 'none';
         calendarView.style.display = 'none';
+        logsView.style.display = 'block';
 
-        // 更新全局状态
         window.app.currentView = 'logs';
 
-        // 加载日志（如果还没加载）
         if (typeof loadLogs === 'function') {
             loadLogs();
         }

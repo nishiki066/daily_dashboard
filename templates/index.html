@@ -39,7 +39,9 @@
 
         <!-- 日历视图 -->
         <div id="calendar-view" class="view-container" style="display: none;">
-            <div id="calendar"></div>
+            <div class="calendar-display">
+                <div id="calendar"></div>
+            </div>
         </div>
 
         <!-- 日志视图 -->
@@ -77,6 +79,7 @@
             </div>
         </div>
 
+
         <!-- 右侧：环境信息 -->
         <div class="control-right">
             <div class="environment-info">
@@ -93,12 +96,12 @@
                     <span class="env-unit">%</span>
                 </div>
                 <div class="env-item">
-                    <span class="env-icon">☁️</span>
-                    <span class="env-label">天气</span>
+                    <span class="env-icon"></span>
+                    <span class="env-label"></span>
                     <span id="env-weather" class="env-value">--</span>
                 </div>
                 <div class="env-item env-update">
-                    <span class="env-label">更新：</span>
+                    <span class="env-label">更新</span>
                     <span id="env-update-time" class="env-value-small">--:--</span>
                 </div>
             </div>

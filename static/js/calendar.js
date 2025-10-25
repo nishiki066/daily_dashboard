@@ -37,20 +37,22 @@ function initCalendar() {
 
             // 顶部工具栏
             headerToolbar: {
-                left: 'prev,next today',
+                left: 'prev,next',
                 center: 'title',
                 right: ''
             },
 
             // 按钮文字
             buttonText: {
-                today: '今天',
                 prev: '上月',
                 next: '下月'
             },
 
             // 日历高度
-            height: 440,
+            height: '100%',
+            expandRows: true,
+            dayMaxEvents: false,
+            dayMaxEventRows: false,
 
             // 显示周末
             weekends: true,
@@ -151,25 +153,10 @@ function switchToLogsView(date) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const calendarEl = document.getElementById('calendar');
-  if (!calendarEl) return;
-
-  // 防止重复创建（如果你之前有别处初始化）
-  if (window.appCalendar && typeof window.appCalendar.destroy === 'function') {
-    window.appCalendar.destroy();
-  }
-
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    locale: 'zh-cn',
-    initialView: 'dayGridMonth',
-    height: '100%',     // 跟随 #calendar 的 100%
-    expandRows: true,   // 优先把行撑满，不内部滚动
-    dayMaxEventRows: 3  // 单日太多事件折叠成 “+n 更多”
-  });
-
-  calendar.render();
-
-  // 暴露给其它脚本（如切换“日志/日历”页签时可更新尺寸）
-  window.appCalendar = calendar;
-});
+// 更新日历尺寸
+function updateCalendarSize() {
+    if (calendar) {
+        calendar.updateSize();
+        console.log('日历尺寸已更新');
+    }
+}
