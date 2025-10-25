@@ -105,7 +105,7 @@ body {
 
 /* ==================== 内容显示区域 ==================== */
 .content-area {
-    height: 480px;
+    height: 455px;
     background-color: #000000;
     overflow: hidden;
 }
@@ -127,6 +127,9 @@ body {
     position: absolute;
     top: 20px;
     left: 30px;
+    display: flex;          /* 👈 新增这行 */
+    align-items: center;    /* 👈 新增这行 */
+    gap: 15px;              /* 👈 新增这行 */
 }
 
 .clock-right {
@@ -134,7 +137,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 160px;/* 距离右边缘的距离 */
+    padding-left: 50px;/* 距离右边缘的距离 */
     padding-top: 90px;
     padding-bottom: 0px;
 }
@@ -157,7 +160,7 @@ body {
 }
 
 .clock-time {
-    font-size: 270px;
+    font-size: 290px;
     color: #00ff00;
     font-weight: bold;
     font-family: 'Courier New', monospace;

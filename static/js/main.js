@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化时钟
     initClock();
 
+    // 初始化时钟视图
+    if (typeof initClockView === 'function') {
+        initClockView();
+    }
+
     // 初始化刷新按钮
     initRefreshButton();
 

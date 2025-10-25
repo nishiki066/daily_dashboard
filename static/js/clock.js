@@ -20,8 +20,17 @@ function initClockView() {
     // 立即更新一次
     updateClockView();
 
-    // 每分钟更新一次（因为不显示秒）
-    setInterval(updateClockView, 60000);
+    // 计算到下一个整分的延迟
+    const now = new Date();
+    const secondsUntilNextMinute = 60 - now.getSeconds();
+    const msUntilNextMinute = secondsUntilNextMinute * 1000;
+
+    // 首次在下一个整分时更新
+    setTimeout(() => {
+        updateClockView();
+        // 然后每分钟更新
+        setInterval(updateClockView, 60000);
+    }, msUntilNextMinute);
 
     console.log('✅ 时钟视图初始化完成');
 }
