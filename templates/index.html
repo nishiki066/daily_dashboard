@@ -12,11 +12,9 @@
     <!-- 顶部导航栏 -->
     <header class="navbar">
         <div class="nav-left">
-            <button id="btn-calendar" class="nav-btn active">日历</button>
+            <button id="btn-clock" class="nav-btn active">时钟</button>
+            <button id="btn-calendar" class="nav-btn">月历</button>
             <button id="btn-logs" class="nav-btn">日志</button>
-        </div>
-        <div class="nav-center">
-            <h1></h1>
         </div>
         <div class="nav-right">
             <div id="current-time" class="clock">加载中...</div>
@@ -26,8 +24,21 @@
 
     <!-- 内容显示区域 -->
     <main class="content-area">
+        <!-- 时钟视图 (新增) -->
+        <div id="clock-view" class="view-container">
+            <div class="clock-display">
+                <div class="clock-left">
+                    <div id="clock-date" class="clock-date">10月25日</div>
+                    <div id="clock-weekday" class="clock-weekday">星期六(土)</div>
+                </div>
+                <div class="clock-right">
+                    <div id="clock-time" class="clock-time">14:30</div>
+                </div>
+            </div>
+        </div>
+
         <!-- 日历视图 -->
-        <div id="calendar-view" class="view-container">
+        <div id="calendar-view" class="view-container" style="display: none;">
             <div id="calendar"></div>
         </div>
 
@@ -54,12 +65,12 @@
         <div class="control-left">
             <div class="light-control-group">
                 <div class="light-item">
-                    <span class="light-label">💡卧室灯</span>
+                    <span class="light-label">💡 卧室灯</span>
                     <button id="btn-bedroom-on" class="btn-light btn-on">开</button>
                     <button id="btn-bedroom-off" class="btn-light btn-off">关</button>
                 </div>
                 <div class="light-item">
-                    <span class="light-label">💡客厅灯</span>
+                    <span class="light-label">💡 客厅灯</span>
                     <button id="btn-living-on" class="btn-light btn-on">开</button>
                     <button id="btn-living-off" class="btn-light btn-off">关</button>
                 </div>
@@ -70,7 +81,7 @@
         <div class="control-right">
             <div class="environment-info">
                 <div class="env-item">
-                    <span class="env-icon"> </span>
+                    <span class="env-icon">🌡️</span>
                     <span class="env-label">温度：</span>
                     <span id="env-temperature" class="env-value">--</span>
                     <span class="env-unit">°C</span>
@@ -109,6 +120,7 @@
     <!-- 自定义JavaScript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/clock.js') }}"></script>
     <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/logs.js') }}"></script>
     <script src="{{ url_for('static', filename='js/light-control.js') }}"></script>

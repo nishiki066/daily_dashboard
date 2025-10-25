@@ -10,8 +10,8 @@
 body {
     font-family: 'Courier New', 'Microsoft YaHei', monospace;
     background-color: #000000; /* 纯黑背景 */
-    width: 100vw;
-    height: 100vh;
+    width: 1024px;
+    height: 600px;
     overflow: hidden;
     color: #00ff00; /* 经典CRT绿 */
 }
@@ -21,7 +21,7 @@ body {
     height: 60px;
     background-color: #0a0a0a;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 左右分布 */
     align-items: center;
     padding: 0 20px;
     border-bottom: 2px solid #00ff00;
@@ -31,15 +31,6 @@ body {
 .nav-left {
     display: flex;
     gap: 15px;
-}
-
-.nav-center h1 {
-    font-size: 24px;
-    color: #00ff00;
-    font-weight: bold;
-    text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00;
-    letter-spacing: 2px;
-    font-family: 'Courier New', monospace;
 }
 
 .nav-right {
@@ -114,7 +105,7 @@ body {
 
 /* ==================== 内容显示区域 ==================== */
 .content-area {
-    height: calc(100vh - 120px);
+    height: 480px;
     background-color: #000000;
     overflow: hidden;
 }
@@ -124,23 +115,85 @@ body {
     padding: 20px;
 }
 
-/* ==================== 日历样式 ==================== */
-#calendar{
-  height:100%;
-  max-width:none;
-  margin:0;              /* 既然要铺满，就别再 auto 居中了 */
-  padding:15px;
-  border:2px solid #00ff00;
-  box-sizing:border-box; /* 你全局已有 */
-  overflow:hidden;       /* 防止 #calendar 自己再出滚动条 */
-}
-.fc-theme-standard{
-  --fc-border-color: #00ff00;        /* 统一格线颜色 */
-  --fc-page-bg-color: #000000;       /* 背景也保持黑色（可选） */
-  --fc-neutral-bg-color: #001a00;    /* 非工作日/表头背景（可选） */
+/* ==================== 时钟视图样式 (新增) ==================== */
+.clock-display {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
-.fc{ height:100%; }
+.clock-left {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+.clock-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock-date {
+    font-size: 36px;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff00;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.clock-weekday {
+    font-size: 28px;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+.clock-time {
+    font-size: 360px;
+    color: #00ff00;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px #00ff00;  /* 极小光晕，或改为 none 完全去除 */
+    letter-spacing: 20px;
+    line-height: 0.9;
+    position: relative;
+}
+
+/* CRT扫描线效果 - 稀疏版 */
+.clock-time::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25) 2px,
+        transparent 2px,
+        transparent 8px  /* 稀疏间隔：每8px一条线 */
+    );
+    pointer-events: none;
+}
+
+/* ==================== 日历样式 ==================== */
+#calendar {
+    height: 440px;
+    max-width: 980px;
+    margin: 0 auto;
+    background-color: #0a0a0a;
+    border-radius: 8px;
+    padding: 15px;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
 /* FullCalendar CRT风格 */
 .fc {
     font-family: 'Courier New', monospace;
@@ -486,14 +539,12 @@ body {
     font-weight: bold;
 }
 
-.env-value { font-size: 16px; } /* 默认大小 */
-
-/* 专门放大温度与湿度 */
-#env-temperature { font-size: 32px; }
-#env-humidity { font-size: 32px; }
-
-/* 天气显示保持正常 */
-#env-weather { font-size: 16px; }
+.env-value {
+    font-weight: bold;
+    color: #00ff00;
+    font-size: 18px;
+    text-shadow: 0 0 8px #00ff00;
+}
 
 .env-value-small {
     font-size: 14px;
@@ -550,33 +601,3 @@ body::before {
         font-size: 19px;
     }
 }
-
-/* 紧凑化 FullCalendar：让整月刚好塞进 1024×576 高度 */
-.fc-toolbar-title {
-  font-size: 18px !important;    /* 原来 24px，太高了 */
-}
-
-.fc-button {
-  padding: 4px 8px !important;   /* 原来 8×16 */
-  font-size: 13px !important;
-}
-
-.fc-col-header-cell {
-  padding: 6px 0 !important;     /* 原来 12px */
-  font-size: 13px !important;
-}
-
-.fc-daygrid-day-number {
-  font-size: 13px !important;    /* 原来 16px */
-  padding: 4px !important;       /* 原来 8px */
-}
-
-.fc-daygrid-day-frame {
-  padding: 0 !important;         /* 去除内部留白 */
-}
-
-/* 保证月视图高度自动扩展，不再内部滚动 */
-.fc-view-harness {
-  overflow: hidden !important;
-}
-
