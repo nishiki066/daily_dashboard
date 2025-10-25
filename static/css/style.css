@@ -134,6 +134,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-left: 160px;/* 距离右边缘的距离 */
+    padding-top: 90px;
+    padding-bottom: 0px;
 }
 
 .clock-date {
@@ -154,17 +157,17 @@ body {
 }
 
 .clock-time {
-    font-size: 360px;
+    font-size: 270px;
     color: #00ff00;
     font-weight: bold;
     font-family: 'Courier New', monospace;
-    text-shadow: 0 0 5px #00ff00;  /* 极小光晕，或改为 none 完全去除 */
+    text-shadow: 0 0 5px #00ff00;  /* 极小光晕 */
     letter-spacing: 20px;
     line-height: 0.9;
     position: relative;
 }
 
-/* CRT扫描线效果 - 稀疏版 */
+/* CRT扫描线效果 - 黑色线条间隔 */
 .clock-time::before {
     content: "";
     position: absolute;
@@ -174,10 +177,10 @@ body {
     height: 100%;
     background: repeating-linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.25),
-        rgba(0, 0, 0, 0.25) 2px,
-        transparent 2px,
-        transparent 8px  /* 稀疏间隔：每8px一条线 */
+        transparent 0px,
+        transparent 6px,           /* 绿色部分：6px */
+        rgba(0, 0, 0, 1) 6px,    /* 黑色线条开始 */
+        rgba(0, 0, 0, 1) 12px     /* 黑色线条：2px宽 */
     );
     pointer-events: none;
 }
