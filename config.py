@@ -1,5 +1,9 @@
 # config.py - 项目配置文件
+import os
+from dotenv import load_dotenv
 
+# 加载 .env 文件
+load_dotenv()
 # Flask配置
 class Config:
     SECRET_KEY = 'your-secret-key-here'  # 用于session加密
@@ -65,17 +69,18 @@ LIGHT_CONTROL = {
 }
 
 # 数据库配置（MariaDB）- 后续使用
+# 数据库配置（从环境变量读取）
 DB_CONFIG = {
-    'host': '192.168.3.12',
-    'port': 3306,
-    'user': 'your_username',      # 替换为实际用户名
-    'password': 'your_password',  # 替换为实际密码
-    'database': 'logs_db',        # 替换为实际数据库名
+    'host': os.getenv('DB_HOST'),
+    'port': int(os.getenv('DB_PORT', '3306')),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'database': os.getenv('DB_NAME'),
     'charset': 'utf8mb4'
 }
 
-# 日志配置（后续使用）
-LOG_CONFIG = {
-    'page_size': 50,  # 每页显示日志条数
-    'max_logs': 1000  # 最多显示日志条数
+# 报告生成脚本配置（从环境变量读取）
+REPORT_SCRIPT = {
+    'python_path': os.getenv('REPORT_SCRIPT_PYTHON'),
+    'script_path': os.getenv('REPORT_SCRIPT_FILE')
 }

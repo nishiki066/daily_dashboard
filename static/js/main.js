@@ -2,8 +2,8 @@
 
 // 全局变量
 window.app = {
-    currentView: 'calendar',
-    selectedDate: null
+    currentView: 'clock',
+    isInitialized: false
 };
 
 // 页面加载完成后初始化

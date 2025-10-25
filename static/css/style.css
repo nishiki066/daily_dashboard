@@ -392,152 +392,158 @@ body {
     border-color: #00ff00 !important;
 }
 
-/* ==================== 日志视图样式 ==================== */
+/* ==================== 报告视图样式 (新增) ==================== */
+/* 日志顶部操作栏 */
 .logs-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     margin-bottom: 15px;
 }
-
-.logs-header h2 {
-    font-size: 22px;
+/* 状态条 */
+.report-status-bar {
+    flex: 1;
+    padding: 10px 15px;
+    background-color: rgba(0, 255, 0, 0.05);
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    font-size: 16px;
     color: #00ff00;
-    font-weight: bold;
-    text-shadow: 0 0 8px #00ff00;
     font-family: 'Courier New', monospace;
-}
-
-.logs-filter {
+    text-shadow: 0 0 5px #00ff00;
+    height: 44px;  /* 固定高度 */
     display: flex;
-    gap: 10px;
     align-items: center;
 }
 
-.logs-filter label {
-    font-size: 15px;
-    color: #00ff00;
-    font-weight: bold;
-}
-
-.logs-filter input[type="date"] {
-    padding: 6px 12px;
-    border: 2px solid #00ff00;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #000000;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-}
-
-.btn-filter {
-    padding: 6px 18px;
+/* 生成新报告按钮 */
+.btn-generate {
+    padding: 8px 16px;  /* 减小内边距，与状态条一致 */
     border: 2px solid #00ff00;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;  /* 与状态条字体大小一致 */
     font-weight: bold;
     background-color: #000000;
     color: #00ff00;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     font-family: 'Courier New', monospace;
-}
-
-.btn-filter:hover {
-    background-color: #00ff00;
-    color: #000000;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
-}
-
-/* 日志容器 */
-.logs-container {
-    height: 380px;
-    overflow-y: auto;
-    background-color: #000000;
-    color: #00ff00;
-    padding: 15px;
-    border-radius: 8px;
-    border: 2px solid #00ff00;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-}
-
-.log-loading {
-    text-align: center;
-    padding: 20px;
-    color: #00ff00;
-    font-size: 16px;
     text-shadow: 0 0 5px #00ff00;
+    white-space: nowrap;
+    height: 44px;  /* 固定高度，与状态条一致 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.log-item {
-    margin-bottom: 12px;
-    padding: 10px 12px;
+.btn-generate:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-generate:active {
+    transform: scale(0.95);
+}
+
+.btn-generate:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* 生成中状态 */
+.btn-generate.generating {
+    background-color: rgba(255, 255, 0, 0.1);
+    color: #ffff00;
+    text-shadow: 0 0 5px #ffff00;
+    border-color: #ffff00;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* 报告区块 */
+.report-section {
+    margin-bottom: 10px; /* 减小间距：15px → 10px */
+}
+
+.report-section-title {
+    font-size: 16px; /* 缩小字体：18px → 16px */
+    font-weight: bold;
+    color: #00ff00;
+    text-shadow: 0 0 8px #00ff00;
+    margin-bottom: 6px; /* 减小间距：8px → 6px */
+    padding: 4px 10px; /* 减小内边距：5px → 4px */
     border-left: 4px solid #00ff00;
     background-color: rgba(0, 255, 0, 0.05);
-    border-radius: 4px;
+    font-family: 'Courier New', monospace;
 }
 
-.log-time {
+/* 执行摘要容器 */
+.report-summary {
+    padding: 12px 20px 12px 15px;
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
     color: #00ff00;
+    font-family: 'Courier New', monospace;
     font-size: 14px;
-    font-weight: bold;
-    margin-right: 10px;
-    text-shadow: 0 0 5px #00ff00;
+    line-height: 1.6;
+    max-height: 100px; /* 减小高度：120px → 100px */
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
 }
 
-.log-level {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-right: 10px;
-    border: 1px solid #00ff00;
-}
-
-.log-level.INFO {
-    background-color: rgba(0, 255, 0, 0.2);
+/* 详细报告容器 */
+.report-content {
+    padding: 15px 20px 15px 15px;
+    background-color: #000000;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
     color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    max-height: 190px; /* 增加高度：220px → 240px，详细报告更重要 */
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
 }
 
-.log-level.WARNING {
-    background-color: rgba(255, 255, 0, 0.2);
-    color: #ffff00;
-    border-color: #ffff00;
+/* 滚动条样式 - CRT 风格 + 触摸屏优化 */
+.report-summary::-webkit-scrollbar,
+.report-content::-webkit-scrollbar {
+    width: 50px; /* 加宽滚动条，更易触摸 */
 }
 
-.log-level.ERROR {
-    background-color: rgba(255, 0, 0, 0.2);
-    color: #ff0000;
-    border-color: #ff0000;
-}
-
-.log-message {
-    color: #00ff00;
-    font-size: 14px;
-}
-
-/* 滚动条CRT风格 */
-.logs-container::-webkit-scrollbar {
-    width: 12px;
-}
-
-.logs-container::-webkit-scrollbar-track {
+.report-summary::-webkit-scrollbar-track,
+.report-content::-webkit-scrollbar-track {
     background: #000000;
-    border: 1px solid #003300;
+    border: 2px solid #003300;
+    border-radius: 10px;
 }
 
-.logs-container::-webkit-scrollbar-thumb {
+.report-summary::-webkit-scrollbar-thumb,
+.report-content::-webkit-scrollbar-thumb {
     background: #00ff00;
-    border-radius: 6px;
-    box-shadow: 0 0 5px #00ff00;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #00ff00;
+    border: 3px solid #000000; /* 内边距，让滑块更清晰 */
+    min-height: 50px; /* 最小高度，更易抓取 */
 }
 
-.logs-container::-webkit-scrollbar-thumb:hover {
+.report-summary::-webkit-scrollbar-thumb:hover,
+.report-content::-webkit-scrollbar-thumb:hover,
+.report-summary::-webkit-scrollbar-thumb:active,
+.report-content::-webkit-scrollbar-thumb:active {
     background: #00ff00;
-    box-shadow: 0 0 10px #00ff00;
+    box-shadow: 0 0 15px #00ff00;
+    border: 2px solid #000000; /* 触摸时变粗一点 */
 }
 
 /* ==================== 底部控制栏 ==================== */

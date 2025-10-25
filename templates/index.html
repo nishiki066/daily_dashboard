@@ -46,17 +46,28 @@
 
         <!-- 日志视图 -->
         <div id="logs-view" class="view-container" style="display: none;">
+            <!-- 状态条和生成按钮 -->
             <div class="logs-header">
-                <h2>系统日志</h2>
-                <div class="logs-filter">
-                    <label for="log-date-filter">日期筛选：</label>
-                    <input type="date" id="log-date-filter">
-                    <button id="btn-filter-logs" class="btn-filter">筛选</button>
-                    <button id="btn-clear-filter" class="btn-filter">全部</button>
+                <div id="report-status-bar" class="report-status-bar">
+                    <span style="color: #00ff00;">加载中...</span>
+                </div>
+                <button id="btn-generate-report" class="btn-generate">生成新报告</button>
+            </div>
+
+            <!-- 执行摘要 -->
+            <div class="report-section">
+                <div class="report-section-title">执行摘要</div>
+                <div id="report-summary" class="report-summary">
+                    正在加载...
                 </div>
             </div>
-            <div id="logs-container" class="logs-container">
-                <div class="log-loading">正在加载日志...</div>
+
+            <!-- 详细报告 -->
+            <div class="report-section">
+                <div class="report-section-title">详细报告</div>
+                <div id="report-content" class="report-content">
+                    正在加载...
+                </div>
             </div>
         </div>
     </main>

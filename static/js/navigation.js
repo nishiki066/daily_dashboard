@@ -63,8 +63,9 @@ function initNavigation() {
 
         window.app.currentView = 'logs';
 
-        if (typeof loadLogs === 'function') {
-            loadLogs();
+        // 加载最新报告
+        if (typeof loadLatestReport === 'function') {
+            loadLatestReport();
         }
 
         console.log('切换到日志视图');
